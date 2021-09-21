@@ -21,6 +21,11 @@ const typeDefs = gql`
         username: String
     }
 
+    type Auth {
+        token: ID!
+        user: User
+    }
+
     type User {
         _id: ID
         username: String
@@ -31,10 +36,19 @@ const typeDefs = gql`
     }
 
     type Query {
+        me: User
         users: [User]
         user(username: String!): User
         thoughts(username: String): [Thought]
         thought(_id: ID!): Thought
+    }
+
+    type Mutation {
+        login(email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
+        addThought(thoughtText: String!): Thought
+        addReaction(thoughtId: ID!, reactionBody: String!): Thought
+        addFriend(friendId: ID!): User
     }
 
 `;
@@ -44,3 +58,4 @@ module.exports = typeDefs
 
 // NOTES:
 // Notice the exclamation point ! after the query parameter data type definitions? That indicates that for that query to be carried out, that data must exist. Otherwise, Apollo will return an error to the client making the request and the query won't even reach the resolver function associated with it
+// : Auth signifies that we want the Auth object returned. Before we wanted to verify that a user was signed in, we returned just the user object
