@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// below, we instruct that the ThoughtList component will receive two props: a title and the thoughts array. Note that we destructure the argument data to avoid using props.title and props.thoughts throughout the JSX code
 const ThoughtList = ({ thoughts, title }) => {
-  // below, we conditionally render JSX by checking to see if there's even any data in the thoughts array first. If there's no data, then we return a message stating that. If there is data, then we return a list of thoughts using the .map() method
   if (!thoughts.length) {
     return <h3>No Thoughts Yet</h3>;
   }

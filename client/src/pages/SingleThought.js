@@ -4,12 +4,12 @@ import { useParams } from 'react-router-dom';
 import ReactionList from '../components/ReactionList';
 
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_THOUGHTS } from '../utils/queries';
+import { QUERY_THOUGHT } from '../utils/queries';
 
 const SingleThought = props => {
   const { id: thoughtId } = useParams();
 
-  const { loading, data } = useQuery(QUERY_THOUGHTS, {
+  const { loading, data } = useQuery(QUERY_THOUGHT, {
     variables: { id: thoughtId }
   });
 
